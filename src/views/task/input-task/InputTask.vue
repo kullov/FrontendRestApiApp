@@ -12,7 +12,8 @@
     private inputTaskDto: TaskDto = new TaskDto();
     private isEdit: boolean = false;
     private isSuccess: boolean = false;
-    private statusList: any = ['Done', 'Pending', 'In-progress', 'Delay']; 
+    private rules: any = null;
+    private statusList: any = ['Done', 'Pending', 'In-progress', 'Delay'];
 
     private created() {
       if (this.$route.params.id) {
@@ -25,6 +26,24 @@
         });
       } else {
         this.isEdit = false;
+      }
+    }
+
+    private mounted() {
+      // Set rule
+      this.rules = {
+        taskName: [
+          { required: true, message: 'Please input Task name', trigger: 'blur' },
+        ],
+        startDate: [
+          { required: true, message: 'Please input start date of task', trigger: 'blur' },
+        ],
+        endDate: [
+          { required: true, message: 'Please input end date of task', trigger: 'blur' },
+        ],
+        status: [
+          { required: true, message: 'Please input status of task', trigger: 'blur' }
+        ]
       }
     }
 
@@ -48,7 +67,7 @@
           } else {
             alert('Update Successfully!!!!');
             this.$router.push({path: '/task'});
-          }  
+          }
         });
     }
 

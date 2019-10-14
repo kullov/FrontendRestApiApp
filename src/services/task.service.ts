@@ -14,11 +14,11 @@ class TaskService extends Vue {
   // }
 
   public getAllTaskByName(taskName: any): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/find', {params: {taskName: taskName}});
+    return Vue.axios.get<any>(this.ROOT_API + '/find', {params: { taskName: taskName }});
   }
 
   public getTaskByName(taskName: any): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/findByTaskName',  {params: {taskName: taskName}});
+    return Vue.axios.get<any>(this.ROOT_API + '/findByTaskName',  {params: { taskName: taskName }});
   }
 
   public getTaskByStartDate(date: Date): AxiosPromise<TaskDto[]> {

@@ -18,9 +18,9 @@ export default new Router({
       name: 'task',
       component: () => import('./views/task/list-task/ListTask.vue'),
     },
-    { 
-      path: '/task/edit/:id', 
-      name: 'taskEdit', 
+    {
+      path: '/task/edit/:id',
+      name: 'taskEdit',
       component: () => import('./views/task/input-task/InputTask.vue')
     },
     {
