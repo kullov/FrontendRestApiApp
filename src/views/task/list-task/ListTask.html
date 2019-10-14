@@ -12,17 +12,16 @@
           </el-col>
           <el-col :span="6">
             <el-form-item label="By Start Date">
-              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-75" size="small" v-model="searchTaskDto.startDate" :required="true"></el-date-picker>
+              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-100" size="small" v-model="searchTaskDto.startDate" :required="true"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="By End Date">
-              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-75" size="small" v-model="searchTaskDto.endDate" :required="true"></el-date-picker>
+              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-100" size="small" v-model="searchTaskDto.endDate" :required="true"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="By Status">
-              <!-- <el-input size="small" v-model="searchTaskDto.status" :required="true"></el-input> -->
               <el-select v-model="searchTaskDto.status" placeholder="Please choose status">
                 <el-option v-for="item in statusList" :key="item" :label="item" :value="item"></el-option>
               </el-select>
@@ -71,7 +70,12 @@
       label="Operations"
       width="120">
       <template slot-scope="scope">
-        <router-link tag="button" class="btn btn-block btn-primary" :to="{name: 'taskEdit', params: { id: scope.row.id} }">Edit Task</router-link>
+        <router-link 
+          tag="button" 
+          class="btn btn-block btn-primary" 
+          :to="{name: 'taskEdit', params: { id: scope.row.id} }">
+          Edit Task
+        </router-link>
       </template>
     </el-table-column>
     <el-table-column

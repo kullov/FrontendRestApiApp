@@ -12,7 +12,7 @@ export default class ListTask extends Vue {
   private data: TaskDto[] = [];
   private searchTaskDto: TaskDto = new TaskDto();
   private tableData: any[] = [];
-  private statusList: any = ['Done', 'Pending', 'In-progress', 'Delay'];
+  private statusList: any = ['', 'Done', 'Pending', 'In-progress', 'Delay'];
   private created() {
     this.getAllTasks();
   }
@@ -38,15 +38,25 @@ export default class ListTask extends Vue {
 
   private search() {
 
-    taskService.getAllTaskByName(this.searchTaskDto.taskName || '')
-    .then((response: AxiosResponse<TaskDto[]>) => {
+    if (this.searchTaskDto.status) {
+      taskService.getAllTasksByStatus(this.searchTaskDto.status || '').then((res: AxiosResponse<TaskDto[]>) => {
+        this.tableData = res.data.map((item: any) => TaskDto.init(item));
+      });
+    } else if (this.searchTaskDto.startDate) {
+      taskService.getAllTasksByStartDate(this.searchTaskDto.startDate).then((response: AxiosResponse<TaskDto[]>) => {
         this.tableData = response.data.map((item: any) => TaskDto.init(item));
-    });
+      });
+    } else if (this.searchTaskDto.endDate) {
+      taskService.getAllTasksByEndDate(this.searchTaskDto.endDate).then((response: AxiosResponse<TaskDto[]>) => {
+        this.tableData = response.data.map((item: any) => TaskDto.init(item));
+      });
+    } else {
+      taskService.getAllTaskByName(this.searchTaskDto.taskName || '').then((response: AxiosResponse<TaskDto[]>) => {
+          this.tableData = response.data.map((item: any) => TaskDto.init(item));
+        });
+    }
 
-    // taskService.getTaskByStartDate(this.searchTaskDto.startDate || '')
-    // .then((response: AxiosResponse<TaskDto[]>) => {
-    //     this.tableData = response.data.map((item: any) => TaskDto.init(item));
-    // });
+    
   }
 }
 </script>

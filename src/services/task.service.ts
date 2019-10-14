@@ -9,24 +9,24 @@ class TaskService extends Vue {
     return Vue.axios.get<any>(this.ROOT_API + '/all');
   }
 
-  // public getAll(taskName: string, startDate: Date, endDate: Date, status: string): AxiosPromise<TaskDto[]> {
-  //   return Vue.axios.get<any>(this.ROOT_API + '/findAllBy', { params: {taskName: taskName, startDate: startDate, endDate: endDate, status: status}});
-  // }
-
-  public getAllTaskByName(taskName: any): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/find', {params: { taskName: taskName }});
+  public getAll(taskName: string, startDate: Date, endDate: Date, status: string): AxiosPromise<TaskDto[]> {
+    return Vue.axios.get<any>(this.ROOT_API + '/findAll', { params: {taskName: taskName, startDate: startDate, endDate: endDate, status: status}});
   }
 
   public getTaskByName(taskName: any): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/findByTaskName',  {params: { taskName: taskName }});
+    return Vue.axios.get<any>(this.ROOT_API + '/taskName', {params: { taskName: taskName }});
   }
 
-  public getTaskByStartDate(date: Date): AxiosPromise<TaskDto[]> {
+  public getAllTasksByStartDate(date: string): AxiosPromise<TaskDto[]> {
     return Vue.axios.get<any>(this.ROOT_API + '/start_date/' + date);
   }
 
-  public getTaskByEndDate(date: Date): AxiosPromise<TaskDto[]> {
+  public getAllTasksByEndDate(date: string): AxiosPromise<TaskDto[]> {
     return Vue.axios.get<any>(this.ROOT_API + '/end_date/' + date);
+  }
+
+  public getAllTasksByStatus(status: string): AxiosPromise<TaskDto[]> {
+    return Vue.axios.get<any>(this.ROOT_API + '/status', {params: { status: status }});
   }
 
   public getDetail(id: string): AxiosPromise<TaskDto> {
