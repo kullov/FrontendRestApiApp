@@ -1,0 +1,49 @@
+<div class="container">
+  <h1 v-if="isEdit">Update task</h1>
+  <h1 v-else>Insert new task</h1>
+  <el-form ref="form" :model="inputTaskDto" label-width="8rem">
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item label="Name Task">
+          <el-input v-model="inputTaskDto.taskName"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item label="Start Date">
+          <el-date-picker type="date" placeholder="Pick a date" v-model="inputTaskDto.startDate" style="width: 100%;">
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item label="End Date">
+          <el-date-picker type="date" placeholder="Pick a date" v-model="inputTaskDto.endDate" style="width: 100%;">
+          </el-date-picker>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item label="Status">
+          <el-select v-model="inputTaskDto.status" placeholder="Please choose status">
+            <el-option v-for="item in statusList" :key="item" :label="item" :value="item"></el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row v-if="isSuccess">
+      <el-col>Insert successfully!</el-col>
+    </el-row>
+    <el-row :gutter="20" class="mb-3">
+      <el-col>
+        <el-button v-if="isEdit" @keydown.enter="update()" @click="update()" type="primary">Update</el-button>
+        <el-button v-if="isEdit" @click="remove()" type="danger">Delete</el-button>
+        <el-button v-else @click="insert()" @keydown.enter="insert()" type="primary">Insert</el-button>
+        <router-link tag="button" class="btn btn-default" :to="{name: 'task'}">Cancel</router-link>
+      </el-col>
+    </el-row>
+  </el-form>
+</div>

@@ -1,0 +1,91 @@
+<div class="container">
+  <h1>List Tasks</h1>
+  <el-form ref="form" :model="searchTaskDto" label-width="7rem">
+    <h4>Search Task</h4>
+    <el-row :gutter="20">
+      <el-col :span="22">
+        <el-row>
+          <el-col :span="6">
+              <el-form-item label="By Name">
+                <el-input size="small" v-model="searchTaskDto.taskName" :required="true"></el-input>
+              </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="By Start Date">
+              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-75" size="small" v-model="searchTaskDto.startDate" :required="true"></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="By End Date">
+              <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-75" size="small" v-model="searchTaskDto.endDate" :required="true"></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="By Status">
+              <!-- <el-input size="small" v-model="searchTaskDto.status" :required="true"></el-input> -->
+              <el-select v-model="searchTaskDto.status" placeholder="Please choose status">
+                <el-option v-for="item in statusList" :key="item" :label="item" :value="item"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-col>
+      <el-col :span="2">
+        <el-button @keydown.enter="search()" @click="search()" type="sucess">Search</el-button>
+      </el-col>
+    </el-row>
+  </el-form>
+  <el-table
+    ref="table"
+    :data="tableData"
+    style="width: 100%">
+    <el-table-column
+      fixed
+      v-if="false"
+      prop="id"
+      label="ID"
+      width="100">
+    </el-table-column>
+    <el-table-column
+      fixed
+      prop="taskName"
+      label="Name"
+      width="200">
+    </el-table-column>
+    <el-table-column
+      prop="startDate"
+      label="Start Date"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="endDate"
+      label="End Date"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="status"
+      label="Status"
+      width="310">
+    </el-table-column>
+    <el-table-column
+      label="Operations"
+      width="120">
+      <template slot-scope="scope">
+        <router-link tag="button" class="btn btn-block btn-primary" :to="{name: 'taskEdit', params: { id: scope.row.id} }">Edit Task</router-link>
+      </template>
+    </el-table-column>
+    <el-table-column
+      label="Operations"
+      width="120">
+      <template slot-scope="scope">
+        <el-button
+          @click="remove(scope.row.id)"
+          class="btn btn-block btn-danger"
+          type="text"
+          size="small">
+          Remove
+        </el-button>
+      </template>
+    </el-table-column>
+  </el-table>
+</div>
