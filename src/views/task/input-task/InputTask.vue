@@ -14,6 +14,7 @@
     private isSuccess: boolean = false;
     private rules: any = null;
     private statusList: any = ['Done', 'Pending', 'In-progress', 'Delay'];
+    private dialogVisible: boolean = false;
 
     private created() {
       if (this.$route.params.id) {

@@ -4,6 +4,8 @@ export class TaskDto {
   public status?: string;
   public startDate?: string;
   public endDate?: string;
+  public page?: number;
+  public totalPages?: number;
 
   constructor(init?: Partial<TaskDto>) {
     Object.assign(this, init);
@@ -15,7 +17,8 @@ export class TaskDto {
       taskName: response.taskName,
       startDate: response.startDate,
       endDate: response.endDate,
-      status: response.status
+      status: response.status,
+      totalPages: response.totalPages
     });
   }
 }
