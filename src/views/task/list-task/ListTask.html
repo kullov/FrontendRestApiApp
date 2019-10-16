@@ -6,25 +6,34 @@
         <h4>Search</h4>
       </template>
       <el-form ref="form" :model="searchTaskDto" label-width="7rem">
-        <el-row :gutter="20" class="mr-3">
-          <el-col :span="22">
+        <el-row class="block-col-2 mr-3">
+          <el-col :span="10">
+            <el-select @change="changeSearchField()" v-model="searchTaskDto.selectSearch" placeholder="">
+              <el-option value="0" label=" "></el-option>
+              <el-option value="1" label="By Name"></el-option>
+              <el-option value="2" label="By Start Date"></el-option>
+              <el-option value="3" label="By End Date"></el-option>
+              <el-option value="4" label="By Status"></el-option>
+            </el-select>
+          </el-col>
+          <el-col :span="10">
             <el-row>
-              <el-col :span="6">
-                  <el-form-item label="By Name">
-                    <el-input size="small" v-model="searchTaskDto.taskName"></el-input>
-                  </el-form-item>
+              <el-col v-if="isGetAllTasksByName">
+                <el-form-item label="By Name">
+                  <el-input size="small" v-model="searchTaskDto.taskName"></el-input>
+                </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col v-if="isGetAllTasksByStartDate">
                 <el-form-item label="By Start Date">
                   <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-100" size="small" v-model="searchTaskDto.startDate" :required="true"></el-date-picker>
                 </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col v-if="isGetAllTasksByEndDate">
                 <el-form-item label="By End Date">
                   <el-date-picker format="dd-MM-yyyy" value-format="dd-MM-yyyy" class="w-100" size="small" v-model="searchTaskDto.endDate" :required="true"></el-date-picker>
                 </el-form-item>
               </el-col>
-              <el-col :span="6">
+              <el-col v-if="isGetAllTasksByStatus">
                 <el-form-item label="By Status">
                   <el-select v-model="searchTaskDto.status" placeholder="">
                     <el-option v-for="item in statusList" :key="item" :label="item" :value="item"></el-option>
@@ -34,7 +43,10 @@
             </el-row>
           </el-col>
           <el-col :span="2">
-            <el-button @keydown.enter="search()" @click="search()" type="sucess">Search</el-button>
+            <el-button @keydown.enter="search()" @click="search()" type="success">Search</el-button>
+          </el-col>
+          <el-col :span="2">
+            <el-button @keydown.enter="init()" v-if="this.searchTaskDto.selectSearch !==  '0'" @click="init()" type="default">Clear</el-button>
           </el-col>
         </el-row>
       </el-form>

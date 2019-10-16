@@ -18,11 +18,11 @@ class TaskService extends Vue {
   }
 
   public getAllTasksByStartDate(date: string, page: number): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/start_date', {params: { date, page: page}});
+    return Vue.axios.get<any>(this.ROOT_API + '/start_date', {params: { startDate: date, page: page}});
   }
 
   public getAllTasksByEndDate(date: string, page: number): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/end_date', {params: { date, page: page}});
+    return Vue.axios.get<any>(this.ROOT_API + '/end_date', {params: { endDate: date, page: page}});
   }
 
   public getAllTasksByStatus(status: string, page: number): AxiosPromise<TaskDto[]> {

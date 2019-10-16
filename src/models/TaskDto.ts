@@ -6,6 +6,7 @@ export class TaskDto {
   public endDate?: string;
   public page?: number;
   public totalPages?: number;
+  public selectSearch?: string;
 
   constructor(init?: Partial<TaskDto>) {
     Object.assign(this, init);

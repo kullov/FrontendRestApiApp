@@ -24,8 +24,10 @@ export default class ListTask extends Vue {
   private isGetAllTasksByName: boolean = false;
   private isGetAllTasksByStartDate: boolean = false;
   private isGetAllTasksByEndDate: boolean = false;
+  // private selectSearch: string = '';
   private created() {
     this.getAllTasks();
+    this.$set(this.searchTaskDto, 'selectSearch', '0');
   }
 
   private getAllTasks() {
@@ -82,6 +84,32 @@ export default class ListTask extends Vue {
     this.isGetAllTasksByEndDate = false;
   }
 
+  private init() {
+    this.$set(this.searchTaskDto, 'taskName', '');
+    this.$set(this.searchTaskDto, 'startDate', '');
+    this.$set(this.searchTaskDto, 'endDate', '');
+    this.$set(this.searchTaskDto, 'status', '');
+  }
+
+  private changeSearchField() {
+    this.init();
+    if (this.searchTaskDto.selectSearch === '1') {
+      this.default();
+      this.isGetAllTasksByName = true;
+    } else if (this.searchTaskDto.selectSearch === '2') {
+      this.default();
+      this.isGetAllTasksByStartDate = true;
+    } else if (this.searchTaskDto.selectSearch === '3') {
+      this.default();
+      this.isGetAllTasksByEndDate = true;
+    } else if (this.searchTaskDto.selectSearch === '4') {
+      this.default();
+      this.isGetAllTasksByStatus = true;
+    } else {
+      this.default();
+    }
+  }
+
   private searchByTaskName() {
     taskService.getAllTaskByName(this.searchTaskDto.taskName || '', this.currentPage).then((response: any) => {
       this.tableData = response.data.content.map((item: any) => TaskDto.init(item));
@@ -125,8 +153,10 @@ export default class ListTask extends Vue {
       this.searchByStartDate();
     } else if (this.searchTaskDto.endDate) {
       this.searchByEndDate();
-    } else {
+    } else if (this.searchTaskDto.taskName) {
       this.searchByTaskName();
+    } else {
+      this.getAllTasks();
     }
   }
 }
