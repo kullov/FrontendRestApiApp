@@ -3,7 +3,7 @@ import { AxiosPromise } from 'axios';
 import { TaskDto } from '@/models/TaskDto';
 
 class TaskService extends Vue {
-  private ROOT_API = 'https://task-management-1912.herokuapp.com/api/task';  // Root api
+  private ROOT_API = 'https://backend-task-management-1912.herokuapp.com/api/task';  // Root api
   // private ROOT_API = 'http://localhost:8090/api/task';  // Root api
 
   public getAllTasks(page: number): AxiosPromise<TaskDto[]> {
