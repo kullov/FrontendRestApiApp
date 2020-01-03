@@ -6,7 +6,7 @@ class TaskService extends Vue {
   private ROOT_API = 'http://localhost:8090/api/task';  // Root api
 
   public getAllTasks(page: number): AxiosPromise<TaskDto[]> {
-    return Vue.axios.get<any>(this.ROOT_API + '/all', {params: { page: page }});
+    return Vue.axios.get<any>(this.ROOT_API + '/all', { params: { page: page }});
   }
 
   public getAll(taskName: string, startDate: Date, endDate: Date, status: string, page: number): AxiosPromise<TaskDto[]> {

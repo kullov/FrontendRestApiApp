@@ -1,0 +1,89 @@
+<div class="container">
+  <h1>List Accounts</h1>
+  <el-table
+    :data="datas"
+    style="width: 100%">
+    <el-table-column
+      v-if="false"
+      prop="userId"
+      label="ID"
+      width="100">
+    </el-table-column>
+    <el-table-column
+      fixed
+      sortable
+      prop="userName"
+      align="center"
+      label="Name"
+      width="200">
+    </el-table-column>
+    <el-table-column
+      prop="email"
+      align="center"
+      label="Email"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      align="center"
+      prop="phone"
+      label="Phone"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="role"
+      sortable
+      label="role"
+      width="310">
+    </el-table-column>
+    <el-table-column
+      label="Operations"
+      align="center"
+      width="240">
+      <template slot-scope="scope">
+        <el-row>
+          <el-col :span="11" class="mr-3">
+            <router-link 
+              tag="button" 
+              class="btn btn-block btn-primary" 
+              :to="{name: 'userDetail', params: { userId: scope.row.userId} }">
+              Edit
+            </router-link>
+          </el-col>
+          <el-col :span="11">
+            <el-button
+              @click="beforeRemove(scope.row.userId)"
+              class="btn btn-block btn-danger"
+              type="text"
+              size="small">
+              Remove
+            </el-button>
+          </el-col>
+        </el-row>
+      </template>
+    </el-table-column>
+  </el-table>
+  <el-pagination
+    :page-size="5"
+    :pager-count="5"
+    layout="prev, pager, next"
+    :total="total"
+    :current-change="changePage">
+  </el-pagination>
+  <el-dialog
+    title="Do you want to delete this account?"
+    :visible.sync="dialogVisible"
+    width="30%"
+  >
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">
+        Cancel
+      </el-button>
+      <el-button
+        type="primary"
+        @click="remove()"
+      >
+        Confirm
+      </el-button>
+    </span>
+  </el-dialog>
+</div>

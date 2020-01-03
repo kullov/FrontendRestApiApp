@@ -26,13 +26,16 @@ export default class ListTask extends Vue {
   private isGetAllTasksByEndDate: boolean = false;
   // private selectSearch: string = '';
   private created() {
-    this.getAllTasks();
-    this.$set(this.searchTaskDto, 'selectSearch', '0');
+    if (localStorage.getItem('isLogger')) {
+      this.getAllTasks();
+      this.$set(this.searchTaskDto, 'selectSearch', '0');
+    }
   }
 
   private getAllTasks() {
     taskService.getAllTasks(this.currentPage)
       .then((response: AxiosResponse<any>) => {
+        ;
         this.tableData = response.data.content.map((item: any) => TaskDto.init(item));
         this.total = response.data.totalElements;
         // this.pageSize = response.data.count;

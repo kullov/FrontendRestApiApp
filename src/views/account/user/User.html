@@ -1,0 +1,71 @@
+<div class="container">
+  <h1 v-if="isEdit">User detail</h1>
+  <h1 v-else>Register</h1>
+  <el-form ref="form" :model="inputUserDto" label-width="8rem" :rules="rules" :validate-on-rule-change="false"
+    :hide-required-asterisk="false">
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item prop="userName" label="Username">
+          <el-input v-model="inputUserDto.userName"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row v-if="!isEdit" :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item prop="password" label="Password">
+          <el-input type="password" v-model="inputUserDto.password" ref="password"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row v-if="!isEdit" :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item prop="confirmPassword" label="Confirm Password">
+          <el-input type="password" v-model="inputUserDto.confirmPassword"></el-input>
+        </el-form-item>
+      </el-col>
+      <el-col class="alert alert-danger" v-show="errors.any()">
+        <div v-if="errors.has('password')">
+          {{ errors.first('password') }}
+        </div>
+        <div v-if="errors.has('password_confirmation')">
+          {{ errors.first('password_confirmation') }}
+        </div>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item prop="email" label="Email">
+          <el-input v-model="inputUserDto.email"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="12" :offset="6">
+        <el-form-item prop="phone" label="Phone">
+          <el-input type="number" v-model="inputUserDto.phone"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row v-if="isSuccess">
+      <el-col>Register successfully!</el-col>
+    </el-row>
+    <el-row :gutter="20" class="mb-3">
+      <el-col>
+        <el-button v-if="isEdit" @keydown.enter="update()" @click="update()" type="primary">Update</el-button>
+        <el-button v-if="isEdit" @click="dialogVisible = true" type="danger">Delete</el-button>
+        <el-button v-else @click="insert()" @keydown.enter="insert()" type="primary">Register</el-button>
+        <router-link tag="button" class="btn btn-default" :to="{name: 'admin'}">Cancel</router-link>
+      </el-col>
+    </el-row>
+  </el-form>
+  <el-dialog title="Do you want to delete this account?" :visible.sync="dialogVisible" width="30%">
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">
+        Cancel
+      </el-button>
+      <el-button type="primary" @click="remove()">
+        Confirm
+      </el-button>
+    </span>
+  </el-dialog>
+</div>

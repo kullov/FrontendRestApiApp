@@ -28,5 +28,22 @@ export default new Router({
       name: 'insert',
       component: () => import('./views/task/input-task/InputTask.vue'),
     },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./views/login/Login.vue'),
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('./views/account/admin/ListAccount.vue'),
+    },
+    {
+      path: '/user/detail/:userId',
+      name: 'userDetail',
+      component: () => import('./views/account/user/User.vue'),
+    },
+
+
   ],
 });

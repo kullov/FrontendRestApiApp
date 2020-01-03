@@ -1,0 +1,66 @@
+<!-- <div>
+  <el-form ref="form" :model="inputLoginDto" label-width="8rem" :rules="rules" :validate-on-rule-change="false" :hide-required-asterisk="false">
+    <el-row :gutter="20">
+      <el-col :span="8" :offset="6">
+        <el-form-item prop="userName" label="User Name">
+          <el-input name="userName" v-model="inputLoginDto.userName"></el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <el-col :span="8" :offset="6">
+        <el-form-item prop="password" label="Password">
+          <el-input name="password" type="password" placeholder="" v-model="inputLoginDto.password">
+          </el-input>
+        </el-form-item>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20" class="mb-3">
+      <el-col>
+        <el-button @keydown.enter="signIn()" @click="signIn" type="primary">Sign In</el-button>
+        <router-link tag="button" class="btn btn-default" :to="{name: 'home'}">Cancel</router-link>
+      </el-col>
+    </el-row>
+  </el-form>
+</div> -->
+<div class="login-container">
+
+  <el-form ref="form" :model="inputLoginDto" :rules="rules" class="login-form" auto-complete="on" label-position="left" :validate-on-rule-change="false" :hide-required-asterisk="false">
+
+    <div class="title-container">
+      <h3 class="title">Login</h3>
+      <!-- <lang-select class="set-language"/> -->
+    </div>
+
+    <el-form-item prop="userName">
+      <span class="svg-container">
+        <!-- <svg-icon icon-class="user" /> -->
+      </span>
+      <el-input
+        v-model="inputLoginDto.userName"
+        :placeholder=""
+        name="userName"
+        type="text"
+        auto-complete="on"
+      />
+    </el-form-item>
+
+    <el-form-item prop="password">
+      <span class="svg-container">
+        <!-- <svg-icon icon-class="password" /> -->
+      </span>
+      <el-input
+        :type="passwordType"
+        v-model="inputLoginDto.password"
+        :placeholder=""
+        name="password"
+        auto-complete="on"
+        @keyup.enter.native="signIn" />
+      <span class="show-pwd" @click="showPwd">
+        <!-- <svg-icon icon-class="eye" /> -->
+      </span>
+    </el-form-item>
+    <el-button type="primary" style="width:45%;margin-bottom:30px;" @click.native.prevent="signIn">Login</el-button>
+    <router-link tag="button" class="btn btn-default" style="width:45%;margin-bottom:30px;" :to="{name: 'home'}">Cancel</router-link>
+  </el-form>
+</div>
