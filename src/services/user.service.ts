@@ -3,7 +3,8 @@ import { AxiosPromise } from 'axios';
 import { UserDto } from '@/models/UserDto';
 
 class UserService extends Vue {
-  private ROOT_API = 'http://localhost:8090/api/user';  // Root api
+private ROOT_API = 'http://localhost:8090/api/user';  // Root api
+// private ROOT_API = 'https://backend-task-management-1912.herokuapp.com/api/user';  // Root api
 
   public getAllUser(page: number): AxiosPromise<any>  {
     return Vue.axios.get<any>(this.ROOT_API + '/all', {params: { page }});

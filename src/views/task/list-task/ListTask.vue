@@ -1,5 +1,9 @@
 <template src="./ListTask.html"></template>
-
+<style scoped lang="scss">
+.container {
+  margin-bottom: 4rem; 
+}
+</style>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { TaskDto } from '@/models/TaskDto';
