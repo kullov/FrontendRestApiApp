@@ -1,18 +1,4 @@
 export class UserDto {
-  public userId?: string;
-  public userName?: string;
-  public password?: string;
-  public email?: string;
-  public phone?: string;
-  public enable?: number;
-  public imageUser?: string;
-  public confirmPassword?: string;
-  public role?: string;
-  
-
-  constructor(init?: Partial<UserDto>) {
-    Object.assign(this, init);
-  }
 
   public static init(response: any): UserDto {
     return new UserDto({
@@ -25,5 +11,19 @@ export class UserDto {
       imageUser: response.imageUser,
       role: response.roles[0].roleName
     });
+  }
+  public userId?: string;
+  public userName?: string;
+  public password?: string;
+  public email?: string;
+  public phone?: string;
+  public enable?: number;
+  public imageUser?: string;
+  public confirmPassword?: string;
+  public role?: string;
+
+
+  constructor(init?: Partial<UserDto>) {
+    Object.assign(this, init);
   }
 }

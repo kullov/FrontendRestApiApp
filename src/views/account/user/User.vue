@@ -1,5 +1,4 @@
 <template src="./User.html"></template>
-<style lang="scss" scoped src="./User.scss"></style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -40,7 +39,7 @@ export default class User extends Vue {
       ],
       password: [
         { required: true, message: 'Please input your password', trigger: 'blur' },
-        
+
       ],
       confirmPassword: [
         { validator: this.validatePassword, trigger: 'blur' },
@@ -51,7 +50,7 @@ export default class User extends Vue {
       phone: [
         { required: true, message: 'Please input your phone', trigger: 'blur' }
       ],
-    }
+    };
   }
 
   private validatePassword(rule: any, value: any, callback: any) {
@@ -65,8 +64,8 @@ export default class User extends Vue {
   }
 
   private insert() {
-    debugger
-      userService.create(this.inputUserDto)
+    debugger;
+    userService.create(this.inputUserDto)
         .then((response: AxiosResponse<UserDto[]>) => {
           if (response === null) {
             alert('Register Failed!!!!');

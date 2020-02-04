@@ -1,4 +1,15 @@
 export class TaskDto {
+
+  public static init(response: any): TaskDto {
+    return new TaskDto({
+      id: response.id,
+      taskName: response.taskName,
+      startDate: response.startDate,
+      endDate: response.endDate,
+      status: response.status,
+      totalPages: response.totalPages
+    });
+  }
   public id?: string;
   public taskName?: string;
   public status?: string;
@@ -10,16 +21,5 @@ export class TaskDto {
 
   constructor(init?: Partial<TaskDto>) {
     Object.assign(this, init);
-  }
-
-  public static init(response: any): TaskDto {
-    return new TaskDto({
-      id: response.id,
-      taskName: response.taskName,
-      startDate: response.startDate,
-      endDate: response.endDate,
-      status: response.status,
-      totalPages: response.totalPages
-    });
   }
 }

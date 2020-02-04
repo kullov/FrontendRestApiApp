@@ -1,5 +1,4 @@
 <template src='./ListAccount.html'></template>
-<style lang="scss" scoped src='./ListAccount.scss'></style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';

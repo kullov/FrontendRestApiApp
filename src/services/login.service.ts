@@ -4,7 +4,7 @@ import { LoginDto } from '@/models/LoginDto';
 
 class LoginService extends Vue {
   private ROOT_API = 'http://localhost:8090';  // Root api
-  
+
   // public login(userName: string, password: string): AxiosPromise<any> {
   //   return Vue.axios.post<LoginDto>(this.ROOT_API + '/authenticate', {username: userName, password: password});
   // }
@@ -33,7 +33,7 @@ class LoginService extends Vue {
     }
     return config;
   }
-  
+
   public login(request: any): Promise<any> {
     return Vue.axios.post(this.ROOT_API + '/authenticate', request)
     .then((res) => {
@@ -55,6 +55,6 @@ class LoginService extends Vue {
     // localStorage[this.userDetailKey] = '';
     return Promise.resolve(true);
   }
-  
+
 }
 export const loginService = new LoginService();

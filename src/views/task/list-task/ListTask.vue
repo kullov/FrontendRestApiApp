@@ -1,5 +1,4 @@
 <template src="./ListTask.html"></template>
-<style lang="scss" scoped src="./ListTask.scss"></style>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
@@ -35,7 +34,7 @@ export default class ListTask extends Vue {
   private getAllTasks() {
     taskService.getAllTasks(this.currentPage)
       .then((response: AxiosResponse<any>) => {
-        ;
+        
         this.tableData = response.data.content.map((item: any) => TaskDto.init(item));
         this.total = response.data.totalElements;
         // this.pageSize = response.data.count;

@@ -1,6 +1,5 @@
 
 <template src="./Login.html"></template>
-<style lang="scss" scoped src="./Login.scss"></style>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { AxiosResponse } from 'axios';
@@ -34,7 +33,7 @@ export default class Login extends Vue {
         password: [
           { required: true, message: 'Please input password', trigger: 'blur' },
         ],
-      }
+      };
   }
 
   private loggedIn() {
@@ -43,9 +42,9 @@ export default class Login extends Vue {
 
   private showPwd() {
       if (this.passwordType === 'password') {
-        this.passwordType = ''
+        this.passwordType = '';
       } else {
-        this.passwordType = 'password'
+        this.passwordType = 'password';
       }
     }
 

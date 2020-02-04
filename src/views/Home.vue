@@ -58,7 +58,7 @@ export default class Home extends Vue {
 
   private logout() {
     // loginService.logout().then((response: any) => {
-      
+
     // })
     localStorage.removeItem('user');
     if (localStorage.getItem('user')) {

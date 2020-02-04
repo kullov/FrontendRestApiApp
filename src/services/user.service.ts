@@ -6,7 +6,7 @@ class UserService extends Vue {
   private ROOT_API = 'http://localhost:8090/api/user';  // Root api
 
   public getAllUser(page: number): AxiosPromise<any>  {
-    return Vue.axios.get<any>(this.ROOT_API + '/all', {params: { page: page }});
+    return Vue.axios.get<any>(this.ROOT_API + '/all', {params: { page }});
   }
 
   public getDetail(id: string): AxiosPromise<UserDto> {

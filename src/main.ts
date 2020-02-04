@@ -14,21 +14,21 @@ import VeeValidate from 'vee-validate';
 import { loginService } from './services/login.service';
 // Add a request interceptor
 axios.interceptors.request.use(
-  config => {
+  (config) => {
       const token = localStorage['x-auth-token'];
       if (token) {
-          config.headers['Authorization'] = 'Bearer ' + token;
+          config.headers.Authorization = 'Bearer ' + token;
       }
       // config.headers['Content-Type'] = 'application/json';
       return config;
   },
-  error => {
-      Promise.reject(error)
+  (error) => {
+      Promise.reject(error);
   });
 
 Vue.use(VeeValidate, {
-  xxxx:'xxxx',
-  fieldsBagName: 'veefields'       //此处默认为fields
+  xxxx: 'xxxx',
+  fieldsBagName: 'veefields'       // 此处默认为fields
 });
 Vue.use(ElementUI);
 

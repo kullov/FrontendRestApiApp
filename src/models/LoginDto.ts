@@ -1,11 +1,4 @@
 export class LoginDto {
-  public id?: string;
-  public userName?: string;
-  public password?: string;
-
-  constructor(init?: Partial<LoginDto>) {
-    Object.assign(this, init);
-  }
 
   public static init(response: any): LoginDto {
     return new LoginDto({
@@ -13,5 +6,12 @@ export class LoginDto {
       userName: response.userName,
       password: response.password,
     });
+  }
+  public id?: string;
+  public userName?: string;
+  public password?: string;
+
+  constructor(init?: Partial<LoginDto>) {
+    Object.assign(this, init);
   }
 }
